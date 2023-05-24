@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
     title: DataTypes.STRING,
     body: DataTypes.TEXT,
     approved: DataTypes.BOOLEAN
-  }, {  
+  }, {
     sequelize,
     modelName: 'Car',
   });

@@ -1,4 +1,6 @@
+// IMPOR MODULE 
 const { Car, hero, buy, sequelize, Sequelize } = require('./models')
+
 // PANGGIL EXPRESS NYA
 const express = require('express')
 
@@ -15,22 +17,22 @@ const postgresqlDb = require('./db/postgresql')
 
 app.post('/login', async function (req, res) {
   try {
-  const data = req.body;
-  const queryData = await postgresqlDb.query('SELECT * FROM public.user WHERE username = $1', [data.username])
-  const userData = queryData.rows[0];
-  // BANDINGKAN USERNAME & PASSWORD
-  if(userData === null){
+    const data = req.body;
+    const queryData = await postgresqlDb.query('SELECT * FROM public.user WHERE username = $1', [data.username])
+    const userData = queryData.rows[0];
+    // BANDINGKAN USERNAME & PASSWORD
+    if (userData === null) {
       res.json({ data: 'Email/password salah !' })
-  } else {
-      if (data.password === userData.password){
-          res.json({ data: 'Succes' })
+    } else {
+      if (data.password === userData.password) {
+        res.json({ data: 'Succes' })
       } else {
-          res.json({ data: 'Email/password salah !' })
+        res.json({ data: 'Email/password salah !' })
       }
-  }
+    }
   } catch (error) {
-   console.log(error)
-   res.status(500).send('Internal server error')   
+    console.log(error)
+    res.status(500).send('Internal server error')
   }
 })
 
@@ -50,7 +52,7 @@ app.get('/', async function (req, res) {
 })
 
 app.post('/item/add', function (req, res) {
-  res.render('item_add', { heroId: req.query.heroId})
+  res.render('item_add', { heroId: req.query.heroId })
 })
 
 app.get('/item/add', async function (req, res) {
@@ -157,7 +159,7 @@ app.post('/hero/update', async function (req, res) {
     const { heroName, role, emblem, ...sisa } = req.body
     // UPDATE DATANYA
     const heroData = await hero.update({ heroName, role, emblem }, { where: { id }, transaction })
-    await buy.update({ ...sisa, heroId: heroData.id }, { where: { heroId: id }, transaction })  
+    await buy.update({ ...sisa, heroId: heroData.id }, { where: { heroId: id }, transaction })
     await transaction.commit()
     // KALAU BERHASIL REDIRECT KE HALAMAN UTAMA
     res.redirect('/')
@@ -170,7 +172,7 @@ app.post('/hero/update', async function (req, res) {
 
 app.post('/hero/delete', async function (req, res) {
   const transaction = await sequelize.transaction()
-  try{
+  try {
     // AMBIL DATA QUERY
     const id = req.query.id
     // UPDATE DATANYA
@@ -179,7 +181,7 @@ app.post('/hero/delete', async function (req, res) {
     await transaction.commit()
     // JIKA BERHASIL, REDIRECT KE HALAMAN UTAMA
     res.redirect('/')
-  } catch(error){
+  } catch (error) {
     await transaction.rollback()
     console.log(error)
     res.status(500).send('Internal server error !')
