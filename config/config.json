@@ -1,0 +1,23 @@
+{
+  "local": {
+    "username": "epiokqcc",
+    "password": "nuJvmqim0PFLzy9z4Eac0EIc-6Owhfqf",
+    "database": "epiokqcc",
+    "host": "satao.db.elephantsql.com",
+    "dialect": "postgres"
+  },
+  "development": {
+    "username": "epiokqcc",
+    "password": "nuJvmqim0PFLzy9z4Eac0EIc-6Owhfqf",
+    "database": "epiokqcc",
+    "host": "satao.db.elephantsql.com",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "database_production",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}
