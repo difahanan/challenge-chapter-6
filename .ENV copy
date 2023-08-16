@@ -1,0 +1,8 @@
+NODE_ENV = local
+PORT = 9000
+
+PG_DATABASE_HOST = satao.db.elephantsql.com
+PG_DATABASE_PORT = 5432
+PG_DATABASE_USER = epiokqcc
+PG_DATABASE_USER = epiokqcc
+PG_DATABASE_PASSWORD = nuJvmqim0PFLzy9z4Eac0EIc-6Owhfqf
